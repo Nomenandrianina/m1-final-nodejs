@@ -3,6 +3,8 @@ require('dotenv').config();
 const connection = require('./db/connection');
 const RoutesUtilisateur = require('./controllers/utilisateur_controllers');
 
+const serverIP = '192.168.1.108'; 
+
 const cors = require('cors');
 var corsOptions = {
     origin: "*"
@@ -10,7 +12,7 @@ var corsOptions = {
 const bodyParser = require("body-parser");
 const app = express();
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 4000;
 var allowCrossDomain = function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -23,6 +25,7 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 app.use(allowCrossDomain);
+app.use(cors());
 app.use(cors({origin: "*"})); 
 app.use(bodyParser.json({limit: '50mb'})); 
 app.use(bodyParser.urlencoded({
@@ -31,4 +34,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(RoutesUtilisateur);
 
-app.listen(port, () => console.log('Server app listening on port ' + port));
+console.log(port);
+app.listen(port, () => 
+  console.log(`Le serveur écoute sur http://${serverIP}:4000/`)
+);
