@@ -1,6 +1,7 @@
 const express = require("express");
 require('dotenv').config();
 const connection = require('./db/connection');
+const RoutesUtilisateur = require('./controllers/utilisateur_controllers');
 
 const cors = require('cors');
 var corsOptions = {
@@ -28,5 +29,6 @@ app.use(bodyParser.urlencoded({
     limit: '50mb',    
     extended: true
 }));
+app.use(RoutesUtilisateur);
 
 app.listen(port, () => console.log('Server app listening on port ' + port));

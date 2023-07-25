@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 // create utilisateur schema & model
 const Utilisateur = new Schema({
     nom: {
@@ -15,10 +18,6 @@ const Utilisateur = new Schema({
     password: {
         type: String,
         required: [true, 'Password field is required']
-    },
-    photo: {
-        type: String,
-        required: [true, 'Photo field is required']
     }
 });
 
