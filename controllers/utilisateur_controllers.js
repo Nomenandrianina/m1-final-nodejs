@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
     try {
       // check if the user exists
       const user = await Utilisateur.findOne({ email: req.body.email });
-      console.log("user",user)
+      console.log(user);
       if (user) {
         //check if password matches
 
@@ -50,7 +50,14 @@ router.post("/login", async (req, res) => {
         if (result) {
           // sign token and send it in response
           const token = await jwt.sign({ email: user.email }, secret);
-          res.status(200).json({ status:200,token,user });
+          res.status(200).json({
+            id: user.id,
+            nom: user.nom,
+            prenom: user.prenom,
+            email: user.email,
+            password: user.password,
+            token: token
+          });
         } else {
           res.status(400).json({ error: "Le mot de passe ne correspond pas!" });
         }

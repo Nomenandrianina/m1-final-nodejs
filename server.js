@@ -2,8 +2,8 @@ const express = require("express");
 require('dotenv').config();
 const connection = require('./db/connection');
 const RoutesUtilisateur = require('./controllers/utilisateur_controllers');
+const RoutesAttraction = require('./controllers/attraction_controllers');
 
-const serverIP = '192.168.1.108'; 
 
 const cors = require('cors');
 var corsOptions = {
@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(RoutesUtilisateur);
+app.use(RoutesAttraction);
 
-console.log(port);
 app.listen(port, () => 
-  console.log(`Le serveur écoute sur http://${serverIP}:4000/`)
+  console.log(`Le serveur écoute sur http://${process.env.SERVERIPHOME}:4000/`)
 );
