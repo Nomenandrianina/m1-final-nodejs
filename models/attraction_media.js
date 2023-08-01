@@ -6,17 +6,18 @@ const Attraction_media = new Schema({
     Attraction: {
         type: mongoose.Types.ObjectId, ref: "attraction"
     },
+    Etape: {
+        type: mongoose.Types.ObjectId, ref: "etape"
+    },
     background: {
         type: String,
         default: "0"
     },
     media_type: {
-        type: String,
-        required: [true, 'Media Type field is required']
+        type: String
     },
     media_path: {
-        type: String,
-        required: [true, 'Media Path name field is required']
+        type: String
     }
 });
 
