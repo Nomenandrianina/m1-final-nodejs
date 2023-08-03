@@ -66,7 +66,7 @@ router.get("/attraction/all", async (req, res) => {
     try {
     // Récupérer les médias avec background = 1 à partir de la table AttractionMedia
         const mediaWithBackgroundOne = await Attraction_media.find({ background: 1, media_type: 'image' }).populate('Attraction','-__v').select('-__v') 
-        .exec();;
+        .exec();
 
         res.status(200).json(mediaWithBackgroundOne);
     } catch (error) {
@@ -83,8 +83,8 @@ router.get('/attraction/detail/:id', async (req, res) => {
       const attraction = await Attraction.findOne({ _id: attractionObjectId });
 
         if (!attraction) {
-        console.log('Attraction non trouvée');
-        return null;
+          console.log('Attraction non trouvée');
+          return null;
         }
 
       const etapes = await Etape.aggregate([
@@ -100,9 +100,16 @@ router.get('/attraction/detail/:id', async (req, res) => {
           }
         }
       ]);
+
+      if(etapes.length > 0){
+        attraction.etapes = etapes;
+        return res.status(200).json(attraction.etapes);
+      }else{
+        message = "Il n\'y a pas encore de détail pour cette site";
+          return res.status(200).json(message);
+      }
   
-      attraction.etapes = etapes;
-      return res.status(200).json(attraction.etapes);
+      
     } catch (error) {
       console.error('Error while fetching attraction with etapes and medias:', error);
       res.status(500).json({ error: 'Internal Server Error' });
