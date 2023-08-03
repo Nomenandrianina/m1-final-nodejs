@@ -69,4 +69,25 @@ router.post("/login", async (req, res) => {
     }
   });
 
+  // Update utilisateur information
+  router.post("/update_utilisateur", async (req, res) =>{
+    try {
+      console.log("body",req.body.id);
+      const utilisateur = await Utilisateur.findByIdAndUpdate(req.body.id,  { $set:{nom: req.body.nom,prenom:req.body.prenom} });
+      res.status(200).json({ status:200,utilisateur });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error });
+    }
+  });
+
+  router.get("/utilisateur_list", async (req, res) =>{
+    try {
+        const piece = await Utilisateur.find();
+        res.status(200).json({ status:200,piece });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+});
+
 module.exports = router;
