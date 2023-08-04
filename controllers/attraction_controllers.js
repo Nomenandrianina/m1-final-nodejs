@@ -115,6 +115,21 @@ router.get('/attraction/detail/:id', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  router.post("/attraction/update/etape/like", async (req, res) => {
+    try {
+      const etapeId = req.body.etapeId;
+      const likesCount = req.body.likecount;
+      const etape = await Etape.findByIdAndUpdate(etapeId,  { $set:{like_count: likesCount} });
+      if(etape){
+        res.status(200).json("Update etape success");
+      }else{
+        res.status(200).json("Update etape error");
+      }
+    } catch (error) {
+        res.status(400).json({ error });
+    }
+});
     
   
 

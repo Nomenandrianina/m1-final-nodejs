@@ -20,6 +20,10 @@ const Etape = new Schema({
     },
     description: {
         type: String
+    },
+    like_count: {
+        type: Number,
+        default: 0,
     }
 });
 
