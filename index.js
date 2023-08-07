@@ -3,6 +3,7 @@ require('dotenv').config();
 const connection = require('./db/connection');
 const RoutesUtilisateur = require('./controllers/utilisateur_controllers');
 const RoutesAttraction = require('./controllers/attraction_controllers');
+const RoutesNotification = require('./controllers/notification_controllers');
 
 
 const cors = require('cors');
@@ -34,9 +35,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(RoutesUtilisateur);
 app.use(RoutesAttraction);
+app.use(RoutesNotification);
 
 app.listen(port, () => 
-  console.log(`Le serveur écoute sur https://doubtful-tick-cowboy-boots.cyclic.app`)
+  console.log(`Le serveur écoute sur http://${process.env.SERVERIPHOME}:4000/`)
 );
+
+//https://doubtful-tick-cowboy-boots.cyclic.app
 
 // http://${process.env.SERVERIPHOME}:4000/

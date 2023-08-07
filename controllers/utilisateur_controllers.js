@@ -1,6 +1,7 @@
 require("dotenv").config(); // load .env variables
 const { Router } = require("express"); // import router from express
 const Utilisateur = require("../models/utilisateurs");
+const Notification = require("../models/notification");
 const bcrypt = require("bcryptjs"); // import bcrypt to hash passwords
 const jwt = require("jsonwebtoken"); // import jwt to sign tokens
 const router = Router();
@@ -82,6 +83,8 @@ router.post("/login", async (req, res) => {
   });
 
   router.get("/utilisateur_list", async (req, res) =>{
+   
+    console.log('jvdkfjvlk');
     try {
         const piece = await Utilisateur.find();
         res.status(200).json({ status:200,piece });
@@ -89,5 +92,6 @@ router.post("/login", async (req, res) => {
       res.status(400).json({ error });
     }
 });
+
 
 module.exports = router;
