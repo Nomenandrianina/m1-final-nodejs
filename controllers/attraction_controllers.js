@@ -46,6 +46,7 @@ router.post("/create/attraction/etape/:id", async (req, res) => {
             duree: req.body.duree,
             unit: req.body.unit,
             description: req.body.description,
+            like_count: req.body.like_count,
         });
 
         const attraction_media = await Attraction_media.create({
