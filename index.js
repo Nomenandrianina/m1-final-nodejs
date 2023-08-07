@@ -36,7 +36,7 @@ app.use(RoutesUtilisateur);
 app.use(RoutesAttraction);
 
 app.listen(port, () => 
-  console.log(`Le serveur écoute sur https://doubtful-tick-cowboy-boots.cyclic.app`)
+  console.log(`Le serveur écoute sur https://doubtful-tick-cowboy-boots.cyclic.app/`)
 );
 
 // http://${process.env.SERVERIPHOME}:4000/
